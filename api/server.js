@@ -1,6 +1,6 @@
 // api/server.js
 
-require("dotenv").config(); // Make sure dotenv is at the top
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
@@ -24,41 +24,67 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post("/book", async (req, res) => {
-  // Note the path change to /api/book
   const newBooking = req.body;
   const { name, email, date, time } = newBooking;
 
+  // Validate input
+  if (!name || !email || !date || !time) {
+    return res.status(400).json({
+      success: false,
+      message: "Missing required fields",
+    });
+  }
+
   try {
+    // Check if APP_PASSWORD is set
+    if (!process.env.APP_PASSWORD) {
+      throw new Error("APP_PASSWORD environment variable is not set");
+    }
+
     // --- Email sending logic ---
-    await transporter.sendMail({
+    const mailResponse = await transporter.sendMail({
       from: "paloheimo2005@gmail.com",
       to: email,
       subject: "Reservation Confirmation",
       text: `Hello ${name},\n\nYour reservation is confirmed.\n\nDate: ${new Date(date).toLocaleDateString()}\nTime: ${time}\n\nWe look forward to seeing you!`,
     });
 
-    // --- File writing logic (for demonstration, not persistent on Vercel) ---
-    let reservations = [];
-    if (fs.existsSync(reservationsPath)) {
-      const data = fs.readFileSync(reservationsPath, "utf8");
-      reservations = JSON.parse(data);
+    console.log("Email sent successfully:", mailResponse.messageId);
+
+    // --- File writing logic (only on local/non-Vercel environments) ---
+    if (process.env.VERCEL !== "1") {
+      try {
+        let reservations = [];
+        if (fs.existsSync(reservationsPath)) {
+          const data = fs.readFileSync(reservationsPath, "utf8");
+          reservations = JSON.parse(data);
+        }
+        reservations.push(newBooking);
+        fs.writeFileSync(
+          reservationsPath,
+          JSON.stringify(reservations, null, 2),
+        );
+        console.log("Reservation saved to file");
+      } catch (fileError) {
+        console.log(
+          "File writing skipped (expected on Vercel):",
+          fileError.message,
+        );
+      }
     }
-    reservations.push(newBooking);
-    fs.writeFileSync(reservationsPath, JSON.stringify(reservations, null, 2));
 
     res.json({
       success: true,
       message: "Reservation confirmed",
     });
   } catch (error) {
-    console.log("Error processing booking:", error);
+    console.error("Error processing booking:", error);
     res.status(500).json({
       success: false,
-      message: "An error occurred while processing your reservation.",
+      message:
+        error.message || "An error occurred while processing your reservation.",
     });
   }
 });
 
-// DO NOT USE app.listen(). Vercel handles this.
-// Instead, export the app instance.
 module.exports = app;
