@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.post("/api/book", async (req, res) => {
+app.post("/book", async (req, res) => {
   // Note the path change to /api/book
   const newBooking = req.body;
   const { name, email, date, time } = newBooking;
