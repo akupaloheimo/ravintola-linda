@@ -40,7 +40,7 @@
 
 .App-header {
   background-color: #e0e961;
-  color: white;
+  color: #e74c3c;
   font-size: clamp(14px, 3vw, 22px);
   font-weight: 500;
   font-family: "Work Sans", sans-serif;
