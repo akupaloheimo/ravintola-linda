@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from "react";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { enGB } from "date-fns/locale"; // Import the locale you want to use
+
+registerLocale("en-GB", enGB);
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -69,7 +72,7 @@ const BookingScreen = React.memo(() => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:5000/book", {
+      const response = await fetch("/api/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, date, time }),
@@ -151,6 +154,7 @@ const BookingScreen = React.memo(() => {
         calendarClassName="booking-calendar"
         excludeDates={excludedDates}
         calendarStartDay={1}
+        locale="en-GB"
       />
 
       <h3>Select a time</h3>
@@ -166,6 +170,7 @@ const BookingScreen = React.memo(() => {
         placeholderText="Pick a time"
         className="booking-input"
         wrapperClassName="booking-datepicker-wrapper"
+        locale="en-GB"
       />
 
       <br />
