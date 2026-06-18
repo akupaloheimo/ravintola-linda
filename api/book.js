@@ -43,6 +43,20 @@ module.exports = async function handler(req, res) {
       text: `Hello ${name},\n\nYour reservation is confirmed.\n\nDate: ${new Date(date).toLocaleDateString()}\nTime: ${time}\n\nWe look forward to seeing you!`,
     });
 
+    await transporter.sendMail({
+      from: "paloheimo2005@gmail.com",
+      to: "aku.paloheimo@gmail.com",
+      subject: "New Reservation",
+      text: `
+New booking received!
+
+Name: ${name}
+Email: ${email}
+Date: ${date}
+Time: ${time}
+`,
+    });
+
     console.log("Email sent successfully:", mailResponse.messageId);
 
     res.status(200).json({
