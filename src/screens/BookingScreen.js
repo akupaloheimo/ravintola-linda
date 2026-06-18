@@ -77,12 +77,30 @@ const BookingScreen = React.memo(() => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, date, time }),
       });
-      const data = await response.json();
+
+      // Log the response for debugging
+      const responseText = await response.text();
+      console.log("Response status:", response.status);
+      console.log("Response text:", responseText);
+
+      // Try to parse JSON
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (e) {
+        console.error("Failed to parse JSON:", e);
+        throw new Error(
+          `Server responded with: ${responseText || "empty response"}`,
+        );
+      }
+
       if (!response.ok || !data.success) {
         throw new Error(data.message || "Failed to send reservation.");
       }
+
       setIsSuccess(true);
     } catch (err) {
+      console.error("Booking error:", err);
       setError(err.message);
     } finally {
       setIsSubmitting(false);
