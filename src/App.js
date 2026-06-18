@@ -1,11 +1,8 @@
 import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import Menu from "./screens/Menu";
 import SplashScreen from "./screens/SplashScreen";
-import { useState, useEffect } from "react";
-import ConfirmationScreen from "./screens/ConfirmationScreen";
 import BookingScreen from "./screens/BookingScreen";
 import ContactScreen from "./screens/ContactScreen";
 

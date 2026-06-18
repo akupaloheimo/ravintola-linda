@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import tausta from "../assets/tausta.jpg";
+// import tausta from "../assets/tausta.jpg";
 
 const SplashScreen = () => {
   const [images, setImages] = useState([]);
