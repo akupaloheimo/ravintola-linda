@@ -1,32 +1,137 @@
-.App {
-  text-align: center;
+/* ============================================
+   BASE & RESET
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
+.App {
+  text-align: center;
+  font-family: "Work Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 80px;
+  margin-bottom: 20px;
+  object-fit: contain;
+  max-width: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: none;
   }
 }
 
+/* ============================================
+   HEADER & NAVBAR
+   ============================================ */
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #e0e961;
   color: white;
+  font-size: clamp(14px, 3vw, 22px);
+  font-weight: 500;
+  font-family: "Work Sans", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  padding: 0 1em;
+  line-height: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  min-height: 5vh;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar {
+  background-color: #e0e961;
+  color: #e74c3c;
+  font-size: clamp(14px, 3vw, 22px);
+  font-weight: 500;
+  font-family: "Work Sans", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  padding: 0 1em;
+  line-height: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 5vh;
 }
+
+/* ============================================
+   BODY
+   ============================================ */
+
+.body {
+  min-height: 94vh; /* was height: 94vh — lets content grow */
+  background-size: cover;
+  font-family: "Work Sans", sans-serif;
+  font-size: clamp(14px, 3vmin, 20px);
+  font-style: normal;
+  font-weight: 400;
+  color: #e74c3c;
+  width: 100%;
+}
+
+/* ============================================
+   POP-UP
+   ============================================ */
+
+.pop-up {
+  padding: 5vh 1em;
+  background-color: #e0e961;
+  position: absolute;
+  width: 100%;
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+
+.App-link {
+  color: #e74c3c;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.App-link:hover {
+  color: #c0392b;
+}
+
+a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+a:visited {
+  color: #e74c3c;
+}
+
+a:hover {
+  color: #e74c3c;
+}
+
+a:active {
+  color: #e74c3c;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 
 @keyframes App-logo-spin {
   from {
@@ -35,4 +140,296 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ============================================
+   MENU
+   ============================================ */
+
+.menu-screen {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding-right: min(5vw, 4em);
+}
+
+.menu-doodle {
+  height: 120px;
+  object-fit: contain;
+  max-width: 100%;
+}
+
+@media (min-width: 600px) {
+  .menu-doodle {
+    height: 150px;
+  }
+}
+
+/* ============================================
+   BOOKING
+   ============================================ */
+
+.booking-screen {
+  width: 90%;
+  max-width: 500px;
+  margin: 24px auto;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  color: #333;
+}
+
+@media (min-width: 600px) {
+  .booking-screen {
+    margin: 40px auto;
+    padding: 40px;
+  }
+}
+
+.booking-screen h1 {
+  color: #e74c3c;
+  margin-bottom: 24px;
+  font-size: clamp(18px, 4vmin, 28px);
+}
+
+.booking-screen h3 {
+  color: #e74c3c;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: clamp(15px, 3vmin, 22px);
+}
+
+.booking-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: clamp(14px, 3vmin, 18px);
+  font-family: "Work Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+.booking-input:focus {
+  outline: none;
+  border-color: #e0e961;
+  box-shadow: 0 0 5px rgba(11, 114, 233, 0.2);
+}
+
+.booking-select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: clamp(14px, 3vmin, 18px);
+  font-family: "Work Sans", sans-serif;
+  box-sizing: border-box;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.booking-select:focus {
+  outline: none;
+  border-color: #e0e961;
+  box-shadow: 0 0 5px rgba(11, 114, 233, 0.2);
+}
+
+.booking-button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background-color: #e0e961;
+  color: #e74c3c;
+  border: none;
+  border-radius: 6px;
+  font-size: clamp(14px, 3vmin, 18px);
+  font-weight: 400;
+  font-family: "Work Sans", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  /* Ensure tap targets are large enough on mobile */
+  min-height: 48px;
+}
+
+.booking-button:hover {
+  background-color: #d4dc50;
+}
+
+/* ============================================
+   CONTACT & MENU COLUMNS
+   ============================================ */
+
+.contact-screen {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contact-column,
+.menu-column {
+  font-size: clamp(14px, 3vmin, 20px);
+  font-family: "Work Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #e74c3c;
+  white-space: pre-line;
+  /* Full width on mobile */
+  width: 90vw;
+  margin-left: 5vw;
+  margin-top: 4vh;
+}
+
+@media (min-width: 700px) {
+  .contact-column,
+  .menu-column {
+    width: 43vw;
+  }
+}
+
+/* ============================================
+   SPLASH SCREEN
+   ============================================ */
+
+.splash-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e0e961 0%, #e0e961 100%);
+}
+
+.splash-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.splash-image {
+  position: absolute;
+  width: clamp(80px, 20vw, 150px);
+  height: clamp(80px, 20vw, 150px);
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0;
+  animation: fadeInOut ease-in-out forwards infinite;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-image {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.splash-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #e74c3c;
+  background-color: #e0e961;
+  border-radius: 33px;
+  padding: 2em 1em;
+  margin: 0 1em;
+}
+
+@media (min-width: 600px) {
+  .splash-content {
+    padding: 0;
+  }
+}
+
+.splash-content h1 {
+  font-size: clamp(2em, 8vw, 3.5em);
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   REACT-DATEPICKER OVERRIDES
+   Append these to the bottom of your App.css
+   ============================================ */
+
+.booking-datepicker-wrapper {
+  width: 100%;
+}
+
+/* The popup calendar */
+.react-datepicker {
+  font-family: "Work Sans", sans-serif;
+  border: 2px solid #e0e961;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-datepicker__header {
+  background-color: #e0e961;
+  border-bottom: none;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker-time__header {
+  color: #e74c3c;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__time-list-item--selected {
+  background-color: #e74c3c !important;
+  color: white !important;
+  border-radius: 4px;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__time-list-item:hover {
+  background-color: #f0f4a0 !important;
+  border-radius: 4px;
+}
+
+.react-datepicker__day--disabled {
+  color: #ccc !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #e74c3c;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
+
+.react-datepicker__time-list-item {
+  font-family: "Work Sans", sans-serif;
 }

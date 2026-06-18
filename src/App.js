@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
+import Menu from "./screens/Menu";
+import SplashScreen from "./screens/SplashScreen";
+import { useState, useEffect } from "react";
+import ConfirmationScreen from "./screens/ConfirmationScreen";
+import BookingScreen from "./screens/BookingScreen";
+import ContactScreen from "./screens/ContactScreen";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="body">
+      <BrowserRouter>
+        <div className="navbar">
+          <Link className="button" to="/">
+            Home
+          </Link>
+          <Link className="button" to="/menu">
+            Menu
+          </Link>
+          <Link className="button" to="/booking">
+            Reserve
+          </Link>
+          <Link className="button" to="/contact">
+            Contact
+          </Link>
+        </div>
+        <div className="body">
+          <Routes>
+            <Route path="/" element={<SplashScreen />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/booking" element={<BookingScreen />} />
+            <Route path="/contact" element={<ContactScreen />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
