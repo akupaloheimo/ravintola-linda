@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -57,4 +57,4 @@ export default async function handler(req, res) {
         error.message || "An error occurred while processing your reservation.",
     });
   }
-}
+};
